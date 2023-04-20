@@ -1,6 +1,7 @@
 package com.example.airlines_lab.controllers;
 
 import com.example.airlines_lab.models.Flight;
+import com.example.airlines_lab.repositories.FlightRepository;
 import com.example.airlines_lab.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,14 +16,18 @@ import java.util.Optional;
 public class FlightController {
     @Autowired
     FlightService flightService;
+    @Autowired
+    FlightRepository flightRepository;
 
     @GetMapping
     public ResponseEntity<List<Flight>> getAllFlights (){
         return new ResponseEntity(flightService.findAllFlights(), HttpStatus.OK);
     }
-    @GetMapping(value = "/{Id}")
-    public ResponseEntity<Optional<Flight>> getAFlight (Long id){
-        return new ResponseEntity<>(flightService.findFlights(id), HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<Flight> getFlightById(@PathVariable Long id) {
+        Optional<Flight> flight = flightRepository.findById(id);
+        return flight.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
     @PostMapping
     public ResponseEntity<Flight> postFlight(@RequestBody Flight flight){
