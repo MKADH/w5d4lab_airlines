@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,9 +22,9 @@ public class Flight {
     @Column(name = "capacity")
     private int capacity;
     @Column(name = "departureDate")
-    private int departureDate;
+    private LocalDate departureDate;
     @Column(name = "departureTime")
-    private double departureTime;
+    private LocalTime departureTime;
     @JsonIgnoreProperties({"flights"})
     @ManyToMany
     @JoinTable(
@@ -32,7 +34,7 @@ public class Flight {
     )
     private List<Passenger> passengers;
 
-    public Flight(String destination, int capacity, int departureDate, double departureTime){
+    public Flight(String destination, int capacity, LocalDate departureDate, LocalTime departureTime){
         this.destination = destination;
         this.capacity = capacity;
         this.departureDate = departureDate;
@@ -75,19 +77,19 @@ public class Flight {
         this.capacity = capacity;
     }
 
-    public int getDepartureDate() {
+    public LocalDate getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(int departureDate) {
+    public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
     }
 
-    public double getDepartureTime() {
+    public LocalTime getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(double departureTime) {
+    public void setDepartureTime(LocalTime departureTime) {
         this.departureTime = departureTime;
     }
 

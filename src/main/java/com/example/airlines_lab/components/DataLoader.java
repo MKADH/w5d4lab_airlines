@@ -9,6 +9,10 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Month;
+
 @Component
 public class DataLoader implements ApplicationRunner {
     @Autowired
@@ -22,7 +26,7 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 
 //        Ethiopian Airlines
-        Flight ethiopianAirlines = new Flight("Mexico", 200, 11/10/2023, 7.00);
+        Flight ethiopianAirlines = new Flight("Mexico", 200, LocalDate.of(2023, Month.JANUARY, 2), LocalTime.of(7, 30));
         flightRepository.save(ethiopianAirlines);
 
         Passenger michaelKaiser = new Passenger("Michael Kaiser", "michaelkaiser@gmail.com");
@@ -33,7 +37,7 @@ public class DataLoader implements ApplicationRunner {
         yoichiIsagi.addFlight(ethiopianAirlines);
         passengerRepository.save(yoichiIsagi);
 //      Qatar Airways
-        Flight qatarAirways = new Flight("India", 300, 12/10/2023, 9.30);
+        Flight qatarAirways = new Flight("India", 300, LocalDate.of(2023, Month.APRIL, 3), LocalTime.of(8, 30));
         flightRepository.save(qatarAirways);
 
         Passenger georgeClooney = new Passenger("George Clooney", "georgeC@gmail.com");
@@ -44,7 +48,7 @@ public class DataLoader implements ApplicationRunner {
         benAffleck.addFlight(qatarAirways);
         passengerRepository.save(benAffleck);
 //        British Airways
-        Flight britishAirways = new Flight("Colombia", 250, 13/10/2023, 12.00);
+        Flight britishAirways = new Flight("Colombia", 250, LocalDate.of(2023, Month.AUGUST, 23), LocalTime.of(12, 45));
         flightRepository.save(britishAirways);
 
         Passenger goku = new Passenger("Son Goku", "kamehameha@gmail.com");
