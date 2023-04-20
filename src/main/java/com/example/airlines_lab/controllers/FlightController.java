@@ -34,7 +34,7 @@ public class FlightController {
         flightService.removePassengersFromFlights(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
-    @PutMapping(value = "/{id}")
+    @PatchMapping(value = "/{id}")
     public ResponseEntity<Flight> updateFlight(@RequestBody Flight flight, @PathVariable Long id){
         flightService.updateFlight(flight, id);
         return new ResponseEntity<>(flight, HttpStatus.OK);
